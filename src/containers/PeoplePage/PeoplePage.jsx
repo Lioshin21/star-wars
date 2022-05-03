@@ -12,25 +12,32 @@ import { useState, useEffect } from "react";
 // Components
 import PeopleList from "../../components/PeoplePage/PeopleList/PeopleList";
 
-const PeoplePage = () => {
+// HOC
+import { withErrorApi } from "../../hoc/withErrorApi";
+
+const PeoplePage = ({ setErrorApi }) => {
   const [people, setPeople] = useState(null);
 
   const getResource = async (url) => {
-    const response = await getApiResource(API_PEOPLE);
+    const response = await getApiResource(url);
 
-    const peopleList = response.results.map(({ name, url }) => {
-      const id = getPeopleId(url);
-      const img = getPeopleImage(id);
+    if (response) {
+      const peopleList = response.results.map(({ name, url }) => {
+        const id = getPeopleId(url);
+        const img = getPeopleImage(id);
 
-      return {
-        id,
-        name,
-        img,
-      };
-    });
+        return {
+          id,
+          name,
+          img,
+        };
+      });
 
-    console.log(peopleList);
-    setPeople(peopleList);
+      setPeople(peopleList);
+      setErrorApi(false);
+    } else {
+      setErrorApi(true);
+    }
   };
 
   useEffect(() => {
@@ -40,4 +47,4 @@ const PeoplePage = () => {
   return <>{people && <PeopleList people={people} />}</>;
 };
 
-export default PeoplePage;
+export default withErrorApi(PeoplePage);
