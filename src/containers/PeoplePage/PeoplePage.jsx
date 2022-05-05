@@ -2,18 +2,18 @@
 import styles from "./PeoplePage.module.css";
 
 // API
-import { getApiResource } from "../../utils/network";
-import { API_PEOPLE } from "../../constants/api";
-import { getPeopleId, getPeopleImage } from "../../services/getPeopleData";
+import { getApiResource } from "@utils/network";
+import { API_PEOPLE } from "@constants/api";
+import { getPeopleId, getPeopleImage } from "@services/getPeopleData";
 
 // Hooks
 import { useState, useEffect } from "react";
 
 // Components
-import PeopleList from "../../components/PeoplePage/PeopleList/PeopleList";
+import PeopleList from "@components/PeoplePage/PeopleList/PeopleList";
 
 // HOC
-import { withErrorApi } from "../../hoc/withErrorApi";
+import { withErrorApi } from "@hoc-helpers/withErrorApi";
 
 const PeoplePage = ({ setErrorApi }) => {
   const [people, setPeople] = useState(null);
