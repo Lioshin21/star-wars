@@ -1,7 +1,7 @@
 import {
     SWAPI_PEOPLE, HTTP, HTTPS, SWAPI_ROOT,
     GUIDE_IMG_EXTENSION, URL_IMG_PERSON
-} from "../constants/api"
+} from "@constants/api"
 
 // Protocol check
 const checkProtocol = url => {

@@ -1,6 +1,10 @@
+// Styles
 import styles from "./PeopleList.module.css";
 
+import propTypes from "prop-types";
+
 const PeopleList = ({ people }) => {
+
   return (
     <ul className={styles.list__container}>
       {people.map(({ id, name, img }) => {
@@ -15,6 +19,11 @@ const PeopleList = ({ people }) => {
       })}
     </ul>
   );
+
 };
+
+PeopleList.propTypes = {
+  people: propTypes.array
+}
 
 export default PeopleList;

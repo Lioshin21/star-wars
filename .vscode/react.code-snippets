@@ -4,6 +4,7 @@
 		"prefix": "component",
 		"body": [
 			"import styles from \"./$1.module.css\";",
+			"import propTypes from \"prop-types\";",
 			"",
 			"const $1 = () => {",
 			"  return (",
@@ -11,6 +12,11 @@
 			"  )",
 			"};",
 			"",
+			"",
+			"",
+			"$1.propTypes = {",
+			"",
+			"}",
 			"export default $1;",
 			""
 		],

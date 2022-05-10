@@ -1,6 +1,8 @@
 // Styles
 import styles from "./PeoplePage.module.css";
 
+import propTypes from "prop-types";
+
 // API
 import { getApiResource } from "@utils/network";
 import { API_PEOPLE } from "@constants/api";
@@ -46,5 +48,9 @@ const PeoplePage = ({ setErrorApi }) => {
 
   return <>{people && <PeopleList people={people} />}</>;
 };
+
+PeoplePage.propTypes = {
+  setErrorAp: propTypes.func
+}
 
 export default withErrorApi(PeoplePage);
