@@ -8,6 +8,7 @@
 
   --font-family-main: sans-serif;
   --font-size-header: 26px;
+  --font-size-subheader: 18px;
   --font-size-main: 16px;
   --font-size-subheader: 18px;
   --font-bold: 600;
@@ -22,11 +23,15 @@
     0 0 2px var(--color-white),
     0 0 40px var(--color-blue);
 
-  --border-radius-small: 5px;
+  --border-radius-small: 3px;
+  --border-radius-medium: 5px;
 
+  --spacing-ultrasmall: 5px;
   --spacing-small: 10px;
   --spacing-medium: 20px;
   --spacing-large: 30px;
+
+  --margin-list: 7px;
 
   --theme-default-header: #cccc46;
   --theme-default-bgimage: url('../../public/background.jpg');
