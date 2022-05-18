@@ -14,10 +14,10 @@ const PersonLinkBack = () => {
     navigate(-1)
   };
   return (
-    <a className={styles.link} href="#" onClick={handleGoBack}>
+    <button className={styles.link} onClick={handleGoBack}>
       <img className={styles.link__img} src={iconBack} alt="icon" />
       <span>Go back</span>
-    </a>
+    </button>
   );
 };
 

@@ -9,7 +9,7 @@ import PersonInfo from "@components/PersonPage/PersonInfo";
 import PersonLinkBack from "@components/PersonPage/PersonLinkBack/PersonLinkBack";
 
 // Hooks
-import { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { getApiResource } from "@utils/network";
@@ -19,10 +19,18 @@ import { getPeopleImage } from "@services/getPeopleData";
 // HOC
 import { withErrorApi } from "@hoc-helpers/withErrorApi";
 
+// UI components
+import UiLoading from "@components/UI/UiLoading";
+
+const PersonFilms = React.lazy(() =>
+  import("@components/PersonPage/PersonFilms/PersonFilms")
+);
+
 const PersonPage = ({ setErrorApi }) => {
   const [personInfo, setPersonInfo] = useState(null);
   const [personName, setPersonName] = useState(null);
   const [personPhoto, setPersonPhoto] = useState(null);
+  const [personFilms, setPersonFilms] = useState(null);
 
   const { id } = useParams();
 
@@ -44,6 +52,8 @@ const PersonPage = ({ setErrorApi }) => {
 
         setPersonPhoto(getPeopleImage(id));
 
+        res.films.length && setPersonFilms(res.films);
+
         setErrorApi(false);
       } else {
         setErrorApi(true);
@@ -59,6 +69,11 @@ const PersonPage = ({ setErrorApi }) => {
         <div className={styles.container}>
           <PersonPhoto personPhoto={personPhoto} />
           {personInfo && <PersonInfo personInfo={personInfo} />}
+          {personFilms && (
+            <Suspense fallback={<UiLoading theme="blue" isShadow/>}>
+              <PersonFilms personFilms={personFilms} />
+            </Suspense>
+          )}
         </div>
       </div>
     </>

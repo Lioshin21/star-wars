@@ -1,4 +1,6 @@
 .link {
+    cursor: pointer;
+    background-color: transparent;
     display: inline-flex;
     align-items: center;
     margin-top: 15px;
