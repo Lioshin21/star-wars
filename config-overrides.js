@@ -10,7 +10,8 @@ module.exports = function override(config, env) {
         '@hoc-helpers': 'src/hoc-helpers',
         '@containers': 'src/containers',
         '@routes': 'src/routes',
-        '@hooks': 'src/hooks'
+        '@hooks': 'src/hooks',
+        '@store': 'src/store',
     })(config)
     return config;
 }

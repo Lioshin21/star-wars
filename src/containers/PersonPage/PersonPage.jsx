@@ -27,6 +27,7 @@ const PersonFilms = React.lazy(() =>
 );
 
 const PersonPage = ({ setErrorApi }) => {
+  const [personId, setPersonId] = useState(null)
   const [personInfo, setPersonInfo] = useState(null);
   const [personName, setPersonName] = useState(null);
   const [personPhoto, setPersonPhoto] = useState(null);
@@ -37,6 +38,8 @@ const PersonPage = ({ setErrorApi }) => {
   useEffect(() => {
     (async () => {
       const res = await getApiResource(`${API_PERSON}/${id}/`);
+
+      setPersonId(id)
 
       if (res) {
         setPersonInfo([
@@ -67,7 +70,7 @@ const PersonPage = ({ setErrorApi }) => {
       <div className={styles.wrapper}>
         <span className={styles.person__name}>{personName}</span>
         <div className={styles.container}>
-          <PersonPhoto personPhoto={personPhoto} />
+          <PersonPhoto personPhoto={personPhoto} personName={personName} personId={personId} />
           {personInfo && <PersonInfo personInfo={personInfo} />}
           {personFilms && (
             <Suspense fallback={<UiLoading theme="blue" isShadow/>}>
