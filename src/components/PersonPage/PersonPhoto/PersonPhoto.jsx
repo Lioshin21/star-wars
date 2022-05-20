@@ -2,33 +2,51 @@
 import styles from "./PersonPhoto.module.css";
 import propTypes from "prop-types";
 
-//Redux
+// Redux
 import { useDispatch } from "react-redux";
 import { setPersonToFavorite, removePersonFromFavorite } from "@store/actions";
 
-const PersonPhoto = ({ personPhoto, personName, personId }) => {
+// icons
+import iconFavorite from "./img/favorite.svg";
+import iconFavoriteFill from "./img/favorite-fill.svg";
+
+const PersonPhoto = ({
+  personPhoto,
+  personName,
+  personId,
+  personFavorite,
+  setPersonFavorite,
+}) => {
   const dispatch = useDispatch();
 
-  const add = () => {
-    dispatch(setPersonToFavorite({
-        [personId]: {
-          name: personName,
-          img: personPhoto, 
-        }
-    }));
-  };
-
-  const remove = () => {
-    dispatch(removePersonFromFavorite(personId));
+  const dispatchFavoritePeople = () => {
+    if (personFavorite) {
+      dispatch(removePersonFromFavorite(personId));
+      setPersonFavorite(false);
+    } else {
+      dispatch(
+        setPersonToFavorite({
+          [personId]: {
+            name: personName,
+            img: personPhoto,
+          },
+        })
+      );
+      setPersonFavorite(true);
+    }
   };
 
   return (
     <>
       <div className={styles.container}>
         <img className={styles.photo} src={personPhoto} alt={personName} />
+        <img
+        onClick={dispatchFavoritePeople}
+        src={personFavorite ? iconFavoriteFill : iconFavorite}
+        className={styles.favorite}
+        alt="Favorite"
+      />
       </div>
-      <button onClick={add}>Add to favorites</button>
-      <button onClick={remove}>Delete out favorites</button>
     </>
   );
 };
@@ -37,5 +55,7 @@ PersonPhoto.propTypes = {
   personId: propTypes.string,
   personPhoto: propTypes.string,
   personName: propTypes.string,
+  personFavorite: propTypes.bool,
+  setPersonFavorite: propTypes.func,
 };
 export default PersonPhoto;

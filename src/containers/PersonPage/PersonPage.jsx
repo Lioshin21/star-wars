@@ -11,6 +11,7 @@ import PersonLinkBack from "@components/PersonPage/PersonLinkBack/PersonLinkBack
 // Hooks
 import React, { Suspense, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { getApiResource } from "@utils/network";
 import { API_PERSON } from "@constants/api";
@@ -27,11 +28,14 @@ const PersonFilms = React.lazy(() =>
 );
 
 const PersonPage = ({ setErrorApi }) => {
-  const [personId, setPersonId] = useState(null)
+  const [personId, setPersonId] = useState(null);
   const [personInfo, setPersonInfo] = useState(null);
   const [personName, setPersonName] = useState(null);
   const [personPhoto, setPersonPhoto] = useState(null);
   const [personFilms, setPersonFilms] = useState(null);
+  const [personFavorite, setPersonFavorite] = useState(false);
+
+  const storeData = useSelector((state) => state.favoriteReducer);
 
   const { id } = useParams();
 
@@ -39,7 +43,9 @@ const PersonPage = ({ setErrorApi }) => {
     (async () => {
       const res = await getApiResource(`${API_PERSON}/${id}/`);
 
-      setPersonId(id)
+      setPersonId(id);
+
+      storeData[id] ? setPersonFavorite(true) : setPersonFavorite(false);
 
       if (res) {
         setPersonInfo([
@@ -70,10 +76,16 @@ const PersonPage = ({ setErrorApi }) => {
       <div className={styles.wrapper}>
         <span className={styles.person__name}>{personName}</span>
         <div className={styles.container}>
-          <PersonPhoto personPhoto={personPhoto} personName={personName} personId={personId} />
+          <PersonPhoto
+            personPhoto={personPhoto}
+            personName={personName}
+            personId={personId}
+            personFavorite={personFavorite}
+            setPersonFavorite={setPersonFavorite}
+          />
           {personInfo && <PersonInfo personInfo={personInfo} />}
           {personFilms && (
-            <Suspense fallback={<UiLoading theme="blue" isShadow/>}>
+            <Suspense fallback={<UiLoading theme="blue" isShadow />}>
               <PersonFilms personFilms={personFilms} />
             </Suspense>
           )}
