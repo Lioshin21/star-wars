@@ -9,12 +9,15 @@ import { Provider } from 'react-redux';
 import './styles/index.css';
 
 // Components
-import App from './containers/App';
+import App from '@containers/App';
+import ThemeProvider from '@context/ThemeProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
-    <Provider store={store}>
+  <Provider store={store}>
+    <ThemeProvider>
       <App />
-    </Provider>
+    </ThemeProvider>
+  </Provider>
 );

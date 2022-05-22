@@ -34,8 +34,16 @@
 
   --margin-list: 7px;
 
-  --theme-default-header: #cccc46;
-  --theme-default-bgimage: url('../../public/background.jpg');
+  /* Themes */
+  --theme-neutral-header: #cccc46;
+  --theme-dark-header: #ca6c6f;
+  --theme-light-header: #dfe2df;
+  --theme-default-header: var(--theme-neutral-header);
+
+  --theme-neutral-bgimage: url('../../public/background.jpg');
+  --theme-dark-bgimage: linear-gradient(to right bottom, #871e2c, #6d1439, #4c143d, #2a1436, #0d0d27);
+  --theme-light-bgimage: linear-gradient(to right top, #000204, #002b35, #00534c, #0e7a45, #779b25);
+  --theme-default-bgimage: var(--theme-neutral-bgimage);
 
   --transition: .4s;
 }
