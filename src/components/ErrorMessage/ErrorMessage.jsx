@@ -1,7 +1,12 @@
 // Styles
 import styles from "./ErrorMessage.module.css";
 
+// Components
+import UiVideo from "@ui/UiVideo/UiVideo";
+import video from "./video/han-solo.mp4";
+
 const ErrorMessage = () => {
+
   return (
     <>
       <p className={styles.text}>
@@ -11,6 +16,7 @@ const ErrorMessage = () => {
         <br />
         Come back when we fix everything.
       </p>
+      <UiVideo src={video} classes={styles.video} playbackRate={1} />
     </>
   );
 };

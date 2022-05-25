@@ -1,5 +1,6 @@
 // Styles
 import styles from "./UiLoading.module.css";
+import cn from "classnames";
 import propTypes from "prop-types";
 
 // Images
@@ -9,7 +10,6 @@ import loaderBlue from "./img/loader-blue.svg";
 
 // Hooks
 import { useEffect, useState } from "react";
-import cn from "classnames";
 
 const UiLoading = ({ theme = "white", isShadow = true, classes }) => {
   const [loaderIcon, setLoaderIcon] = useState(null);
@@ -17,21 +17,27 @@ const UiLoading = ({ theme = "white", isShadow = true, classes }) => {
   useEffect(() => {
     switch (theme) {
       case "black":
-        setLoaderIcon(loaderBlack)
+        setLoaderIcon(loaderBlack);
         break;
       case "white":
-        setLoaderIcon(loaderWhite)
+        setLoaderIcon(loaderWhite);
         break;
       case "blue":
-        setLoaderIcon(loaderBlue)
+        setLoaderIcon(loaderBlue);
         break;
       default:
-        setLoaderIcon(loaderBlack)
+        setLoaderIcon(loaderBlack);
         break;
     }
   }, []);
 
-  return <img className={cn(styles.loader, isShadow && styles.shadow, classes)} src={loaderIcon} alt="loader" />;
+  return (
+    <img
+      className={cn(styles.loader, isShadow && styles.shadow, classes)}
+      src={loaderIcon}
+      alt="loader"
+    />
+  );
 };
 
 UiLoading.propTypes = {
