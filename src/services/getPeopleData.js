@@ -21,6 +21,7 @@ const checkProtocol = url => {
 
 // Get id by url
 const getId = (url, category) => {
+
     const protocol = checkProtocol(url)
 
     const id = url

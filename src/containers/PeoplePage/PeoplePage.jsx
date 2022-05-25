@@ -33,6 +33,7 @@ const PeoplePage = ({ setErrorApi }) => {
   const queryPage = query.get("page");
 
   const getResource = async (url) => {
+    console.log(url)
     const response = await getApiResource(url);
 
     if (response) {
