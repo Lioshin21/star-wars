@@ -1,0 +1,31 @@
+{
+	"React": {
+		"scope": "javascript, javascriptreact",
+		"prefix": "component",
+		"body": [
+			"import styles from \"./$1.module.css\";",
+			"import propTypes from \"prop-types\";",
+			"",
+			"const $1 = () => {",
+			"  return (",
+			"    <div>$2</div>",
+			"  )",
+			"};",
+			"",
+			"",
+			"",
+			"$1.propTypes = {",
+			"",
+			"}",
+			"export default $1;",
+			""
+		],
+	},
+	"Export": {
+		"scope": "javascript, javascriptreact",
+		"prefix": "export",
+		"body": [
+			"export { default } from './$1';"
+		],
+	}
+}
