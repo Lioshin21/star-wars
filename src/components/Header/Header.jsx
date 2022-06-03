@@ -22,6 +22,7 @@ import {
 import imgDroid from "./img/droid.svg";
 import imgLightsaber from "./img/lightsaber.svg";
 import imgSpaceStation from "./img/space-station.svg";
+import { getLocalStorage } from "../../utils/localStorage";
 
 const Header = () => {
   const [icon, setIcon] = useState(imgSpaceStation);
@@ -41,6 +42,10 @@ const Header = () => {
       default:
         setIcon(imgSpaceStation);
     }
+
+      const defaultTheme = getLocalStorage("theme");
+      isTheme.change(defaultTheme);
+
   }, [isTheme]);
 
   return (

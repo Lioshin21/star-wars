@@ -2,7 +2,7 @@
 import styles from "./HomePage.module.css";
 
 //Components
-import ChooseSide from "../../components/HomePage/ChooseSide/ChooseSide";
+import ChooseSide from "@components/HomePage/ChooseSide/ChooseSide";
 
 const HomePage = () => {
   return (

@@ -14,12 +14,21 @@ import {
 import imgDark from "./img/dark-side.jpg";
 import imgLight from "./img/light-side.jpg";
 import imgFalcon from "./img/falcon.jpg";
-
+import { setLocalStorage } from "../../../utils/localStorage";
 
 const ChooseSideItem = ({ theme, text, img, classes }) => {
   const isTheme = useTheme();
+
+  const changeTheme = (theme) => {
+    isTheme.change(theme);
+    setLocalStorage("theme", theme);
+  };
+
   return (
-    <div className={cn(styles.item, classes)} onClick={() => isTheme.change(theme)}>
+    <div
+      className={cn(styles.item, classes)}
+      onClick={() => changeTheme(theme)}
+    >
       <div className={styles.item__header}>{text}</div>
       <img className={styles.item__img} src={img} alt={text} />
     </div>
